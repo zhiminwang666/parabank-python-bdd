@@ -34,13 +34,26 @@ jobs:
 
       - name: Install Allure CLI
         run: |
+          set -e
           sudo apt-get update
-          sudo apt-get install -y default-jre
-          curl -Ls -o allure.tgz https://github.com/allure-framework/allure2/releases/latest/download/allure-2.27.0.tgz
-          tar -xzf allure.tgz
-          sudo mv allure-2.27.0 /opt/allure
+          sudo apt-get install -y default-jre curl
+
+          ALLURE_VERSION=2.27.0
+          ALLURE_TGZ=allure-${ALLURE_VERSION}.tgz
+          ALLURE_URL=https://github.com/allure-framework/allure2/releases/download/${ALLURE_VERSION}/${ALLURE_TGZ}
+
+          echo "Downloading: $ALLURE_URL"
+          curl -fL -o $ALLURE_TGZ "$ALLURE_URL"
+
+          echo "Check downloaded file type:"
+          file $ALLURE_TGZ
+
+          tar -xzf $ALLURE_TGZ
+          sudo mv allure-${ALLURE_VERSION} /opt/allure
           sudo ln -sf /opt/allure/bin/allure /usr/local/bin/allure
+
           allure --version
+      
 
       - name: Generate Allure HTML report
         run: |
