@@ -42,11 +42,10 @@ pipeline {
         """
       }
     }
-
-    post {
+  }
+  post {
     always {
       archiveArtifacts artifacts: 'allure-results/**', fingerprint: true
-    }
     }
   }
 }
