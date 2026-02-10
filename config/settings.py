@@ -10,3 +10,7 @@ USERNAME = os.getenv("PB_USERNAME", "john")
 PASSWORD = os.getenv("PB_PASSWORD", "demo")
 BROWSER = os.getenv("BROWSER", "chrome")
 HEADLESS = os.getenv("HEADLESS", "true").lower() == "true"
+
+PB_CUSTOMER_ID = int(os.getenv("PB_CUSTOMER_ID", "12212"))
+PB_FROM_ACCOUNT_ID = int(os.getenv("PB_FROM_ACCOUNT_ID", "13344"))
+PB_NEW_ACCOUNT_TYPE = int(os.getenv("PB_NEW_ACCOUNT_TYPE", "0"))
